@@ -1,0 +1,7 @@
+<% if current_user.present? and current_user.admin? %>
+<h1>New Contact U</h1>
+
+<%= render 'form', contact_u: @contact_u %>
+
+<%= link_to 'Back', contact_us_path %>
+<% end %>

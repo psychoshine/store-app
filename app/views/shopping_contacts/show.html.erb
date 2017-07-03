@@ -1,0 +1,38 @@
+<% provide(:title, "Shopping contact: #{@shopping_contact.id}") %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <% if @shopping_contact.user_id.present? %>
+    <%= @shopping_contact.user_id %>
+  <% else %>
+  Guest
+  <% end %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @shopping_contact.state %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @shopping_contact.zip_code %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @shopping_contact.adress %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @shopping_contact.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @shopping_contact.phone %>
+</p>
+
+<%= link_to 'Edit', edit_shopping_contact_path(@shopping_contact) %> |

@@ -1,0 +1,116 @@
+<% provide(:title, "Contacts") %>  
+<p id="notice"><%= notice %></p>
+
+<% unless @no_contacts == true %>
+
+    <%= render partial: "contact_us/form" %>
+
+<div class="row center">
+  <div class="col s12 m6 offset-m3">
+  <div class="card ">     
+      <ul class="collection with-header">
+      <li class="collection-item">
+        <% if @contact.vk.present? %>               
+            <%= link_to url_with_protocol(@contact.vk), class: "btn btn-social-icon btn-vk", :target => '_blank' do %>
+              <span class="btn btn-social-icon btn-vk fa fa-vk"></span>
+            <% end %>     
+        <% end %>
+        <% if @contact.fb.present? %>          
+            <%= link_to url_with_protocol(@contact.fb), class: "btn btn-social-icon btn-facebook", :target => '_blank' do %>
+              <span class="btn btn-social-icon btn-facebook fa fa-facebook"></span>
+            <% end %>
+        <% end %>
+        <% if @contact.insta.present? %>            
+            <%= link_to url_with_protocol(@contact.insta), class: "btn btn-social-icon btn-instagram", :target => '_blank' do %>
+              <span class="btn btn-social-icon btn-instagram fa fa-instagram"></span>
+            <% end %>
+        <% end %>
+        <% if @contact.twitter.present? %>          
+            <%= link_to url_with_protocol(@contact.twitter), class: "btn btn-social-icon btn-twitter", :target => '_blank' do %>
+              <span class="btn btn-social-icon btn-twitter fa fa-twitter"></span>
+            <% end %>
+        <% end %>
+      </li>
+      <% if @contact.email.present? %>
+        <li class="collection-item">
+          <div><%= @contact.email%> <%= mail_to @contact.email, "send email"%></div>
+        </li>
+      <% end %>
+      <% if @contact.phone.present? %>
+        <li class="collection-item">
+          <div><%= t(:index_phone)%>: <%= @contact.phone%></div>
+        </li>
+      <% end %>
+      <% if @contact.phone2.present? %>
+        <li class="collection-item">
+          <div><%= t(:index_phone)%>: <%= @contact.phone2%></div>
+        </li>
+      <% end %>
+      <% if @contact.phone3.present? %>
+        <li class="collection-item">
+          <div><%= t(:index_phone)%>: <%= @contact.phone3%></div>
+        </li>
+      <% end %>
+
+      <% if current_page?(locale: :ua) %>
+      <% if @contact.adress.present? %>
+        <li class="collection-item">
+          <div><%= t(:index_address)%>: <%= @contact.adress%></div>
+        </li>
+      <% end %>
+      <% end %>
+
+      <% if current_page?(locale: :ru) %>
+      <% if @contact.adress2.present? %>
+        <li class="collection-item">
+          <div><%= t(:index_address)%>: <%= @contact.adress2%></div>
+        </li>      
+      <% end %>
+      <% end %>
+
+      <% if current_page?(locale: :ua) %>
+      <% if @contact.description.present?%>
+        <li class="collection-item">
+          <div><%= t(:index_description)%>: <%= @contact.description%></div>
+        </li>      
+      <% end %>
+      <% end %>
+
+      <% if current_page?(locale: :ru) %>
+      <% if @contact.description2.present?%>
+        <li class="collection-item">
+          <div><%= t(:index_description)%>: <%= @contact.description2%></div>
+        </li>      
+      <% end %>
+      <% end %>
+
+      <% if current_page?(locale: :ua) %>
+      <% if @contact.how_to_get.present? %>        
+        <li class="collection-item">
+          <div><%= t(:index_how_to_get)%>: <%= @contact.how_to_get%></div>
+        </li>
+      <% end %>
+
+      <% end %>
+      <% if current_page?(locale: :ru) %>
+      <% if @contact.how_to_get2.present? %>        
+        <li class="collection-item">
+          <div><%= t(:index_how_to_get)%>: <%= @contact.how_to_get2%></div>
+        </li>
+      <% end %>
+      <% end %>
+
+      </ul>
+  </div>
+  </div>
+</div>
+<br>
+<% if current_user.present? and current_user.admin? %>
+<div class="container center">
+  <%= link_to t(:edit_contacts), edit_contact_path(@contact), class: "waves-effect waves-light btn "  %>
+  <%= link_to t(:destroy_contact_page), @contact, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn red" %>
+</div>
+<% end %>
+<% end %>
+
+

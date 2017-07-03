@@ -1,0 +1,50 @@
+<% provide(:title, "Contacts") %>  
+<% if current_user.present? and current_user.admin? %>
+
+<p id="notice"><%= notice %></p>
+ <%= render partial: "contact_us/form" %>.
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>
+      
+      <ul class="collection with-header">
+        <li class="collection-header">
+        <h4>
+          
+        </h4>
+        </li>
+        <li class="collection-item">
+          <div><%= link_to "facebook", url_with_protocol(@contact.fb), :target => '_blank' %></div>
+        </li>
+        <li class="collection-item">
+          <div><%= link_to "twitter", @contact.twitter, :target => '_blank' %></div>
+        </li>
+        <li class="collection-item">
+          <div><%= link_to "facebook", url_with_protocol(@contact.fb), :target => '_blank' %></div>
+        </li>
+        <li class="collection-item">
+          <div><%= link_to "instagram", url_with_protocol(@contact.insta), :target => '_blank' %></div>
+        </li>
+         <li class="collection-item">
+          <div><%= link_to "vk", url_with_protocol(@contact.vk), :target => '_blank' %></div>
+        </li>
+        <li class="collection-item">
+          <div><%= mail_to @contact.email, "email"%></div>
+        </li>
+        <li class="collection-item">
+          <div>phone: <%= @contact.phone%></div>
+        </li>
+        <li class="collection-item">
+          <div>phone: <%= @contact.phone2%></div>
+        </li>
+        <li class="collection-item">
+          <div>phone: <%= @contact.phone3%></div>
+        </li>
+        <li class="collection-item">
+          <div>address: <%= @contact.adress%></div>
+        </li>        
+        <li class="collection-item">
+          <div>how to get: <%= @contact.how_to_get%></div>
+        </li>                        
+      </ul>
+<% end %>

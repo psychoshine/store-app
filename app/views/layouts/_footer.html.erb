@@ -1,0 +1,68 @@
+        <style>
+         .page-footer {
+          background-color: #eeeeee;
+        <% if current_page?(contacts_path)%>  
+          position: fixed;
+        <% end %>  
+          width: 100%;
+          bottom: 0;
+         }
+
+        </style>
+
+<% if @contact.present? %>
+        <br>
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row grey-text">
+              <div class="col l6 s12" >
+                      <% if @contact.adress.present? %>
+                    <h6> <%= @contact.adress%></h6>
+                      <% end %>
+                    <div>
+                      <% if @contact.phone.present? %>
+                          <%= @contact.phone%>
+                      <% end %> 
+                      <% if @contact.phone2.present? %>
+                          <%= @contact.phone2%>
+                      <% end %> 
+                      <% if @contact.phone3.present? %>
+                          <%= @contact.phone3%>
+                      <% end %>
+                    </div>
+              </div>
+              <div class="col l4 offset-l2 s12 grey-text"> 
+	                <% if @contact.vk.present? %>               
+	                    <%= link_to url_with_protocol(@contact.vk), class: "btn btn-social-icon btn-vk", :target => '_blank' do %>
+	                      <span class="btn btn-social-icon btn-vk fa fa-vk"></span>
+	                    <% end %>     
+	                <% end %>
+	                <% if @contact.fb.present? %>          
+	                    <%= link_to url_with_protocol(@contact.fb), class: "btn btn-social-icon btn-facebook", :target => '_blank' do %>
+	                      <span class="btn btn-social-icon btn-facebook fa fa-facebook"></span>
+	                    <% end %>
+	                <% end %>
+	                <% if @contact.insta.present? %>            
+	                    <%= link_to url_with_protocol(@contact.insta), class: "btn btn-social-icon btn-instagram", :target => '_blank' do %>
+	                      <span class="btn btn-social-icon btn-instagram fa fa-instagram"></span>
+	                    <% end %>
+	                <% end %>
+	                <% if @contact.twitter.present? %>          
+	                    <%= link_to url_with_protocol(@contact.twitter), class: "btn btn-social-icon btn-twitter", :target => '_blank' do %>
+	                      <span class="btn btn-social-icon btn-twitter fa fa-twitter"></span>
+	                    <% end %>
+	                <% end %>
+
+                      <% if @contact.email.present? %>                      
+                          <div><%= @contact.email%></div>  
+                      <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container grey-text">
+            created by dumka.maynula
+            </div>
+          </div>
+        </footer> 
+<% end %>

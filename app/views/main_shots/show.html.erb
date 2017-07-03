@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<% if current_page?(locale: :ua)%>
+  <div class="row">
+    <div class="col s12 m6 offset-m3 ">
+      <div class="card hoverable">
+        <div class="card-image">
+          <%= image_tag @main_shot.photo.url(:large) %>    
+        </div>
+        <div class="card-content">
+        	<span class="card-title truncate"><td><%= @main_shot.title %></td></span>
+          <p><%= simple_format(@main_shot.description)%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% elsif current_page?(locale: :ru)%>
+  <div class="row">
+    <div class="col s12 m6 offset-m3 ">
+      <div class="card hoverable">
+        <div class="card-image">
+          <%= image_tag @main_shot.photo.url(:large) %>    
+        </div>
+        <div class="card-content">
+          <span class="card-title truncate"><td><%= @main_shot.title2 %></td></span>
+          <p><%= simple_format(@main_shot.description2)%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if current_user.present? and current_user.admin? %>
+<div class="container center">
+	<%= link_to t(:edit), edit_main_shot_path(@main_shot), class: "waves-effect waves-light btn" %> 
+	<%= link_to t(:back), main_shots_path, class: "waves-effect waves-light btn "  %>
+	<%= link_to t(:destroy), @main_shots_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn red" %>
+</div>
+<% end %>

@@ -1,0 +1,8 @@
+<% provide(:title, "Edit contacts") %>  
+<h2 class="center"><%= t(:edit_contacts) %></h2>
+
+<%= render 'form', contact: @contact %>
+<br>
+<div class="container center">
+	<%= link_to t(:back), contacts_path, class: "waves-effect waves-light btn "  %>
+</div>

@@ -1,0 +1,2 @@
+module MainShotsHelper
+end

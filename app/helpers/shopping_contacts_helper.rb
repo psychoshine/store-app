@@ -1,0 +1,2 @@
+module ShoppingContactsHelper
+end

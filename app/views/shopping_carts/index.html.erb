@@ -1,0 +1,56 @@
+<% provide(:title, "Shopping carts") %>
+<style type="text/css">
+  .pagination li.active {
+    background: grey;
+}
+  .pagination li a:hover {
+    background: #eeeeee;
+  }
+
+
+  .slider .indicators .indicator-item.active {
+    background-color: grey;
+  }
+
+</style>
+<p id="notice"><%= notice %></p>
+<div class="container">
+<h5><%= t(:index_title)%></h5>
+</div>
+<div class="container">
+<table>
+  <thead>
+    <tr>
+      <th><%= t(:index_user)%></th>
+      <th><%= t(:index_contact_info)%></th>
+      <th><%= t(:index_confirmation)%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shopping_carts.each do |shopping_cart| %>
+      <tr>
+        <td><%= shopping_cart.user_id if @shopping_cart.user_id.present? %></td>
+      <% if shopping_cart.shopping_contacts.any? %>
+        <td>
+          <%= shopping_cart.shopping_contacts.last.full_name %>, 
+          <%= shopping_cart.shopping_contacts.last.email %>,
+          <%= shopping_cart.shopping_contacts.last.phone %>
+        </td>
+      <% else %>
+        <td> - </td>
+      <% end %>
+        <td><%= shopping_cart.cart_confirms.any? %></td>
+        <td><%= link_to t(:show), shopping_cart %></td>
+        <td><%= link_to t(:edit), edit_shopping_cart_path(shopping_cart) %></td>
+        <td><%= link_to t(:destroy), shopping_cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="center">
+<%= will_paginate @shopping_carts %>
+</div>
+<br>
+</div>

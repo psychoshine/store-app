@@ -1,0 +1,88 @@
+booking_posts
+
+<!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+        <!--Materializecss Slider-->
+        <script>
+            $(document).ready(function () {
+ 
+            });
+        </script>
+
+
+booking_posts/show
+
+<!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+main_shots
+
+<!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+        <!--Materializecss Slider-->
+        <script>
+              $(document).ready(function(){
+              $('.parallax').parallax();
+            });
+        </script>
+
+
+post_slides
+<!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+        <!--Materializecss Slider-->
+        <script>
+            $(document).ready(function () {
+                $('.slider').slider({full_width: true});
+            });
+        </script>
+
+
+posts
+<!--Import jQuery before materialize.js-->
+        <!--script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script-->
+
+        <!-- Compiled and minified JavaScript -->
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+
+        <script>
+            $(document).ready(function () {
+               
+            });
+        </script-->
+
+posts/show
+
+<!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+        <!--Materializecss Slider-->
+        <script>
+            $(document).ready(function () {
+       
+            });
+        </script>
+
+reservations/edit
+           	
+
+ $('.slider').slider({full_width: true});

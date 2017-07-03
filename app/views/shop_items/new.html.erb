@@ -1,0 +1,9 @@
+<% provide(:title, "New shop item") %>
+<h2 class="center"><%= t(".title")%></h2>
+
+<%= render 'form', shop_item: @shop_item %>
+
+
+<div class="container center">
+	<%= link_to t(:back), shop_items_path, class: "waves-effect waves-light btn "  %>
+</div>

@@ -1,0 +1,216 @@
+<% provide(:title, "Shopping cart: #{@shopping_cart.id}") %>
+<style type="text/css">
+  .pagination li.active {
+    background: grey;
+}
+  .pagination li a:hover {
+    background: #eeeeee;
+  }
+
+  .slider .indicators .indicator-item.active {
+    background-color: grey;
+  }
+
+</style>
+<p id="notice"><%= notice %></p>
+<% if @shopping_cart.user.present? %>
+  <div class="container">
+  <h5><%= @shopping_cart.user.name %></h5>
+  </div>
+<% else %>
+  <div class="container">
+  <h5> <%= t(:show_guest)%></h5>
+  </div>
+<% end %>
+
+<% if @cart_items.any?%>
+<div class="container">
+<table class="responsive-table highlight">
+  <thead>
+    <tr>
+      <td></td>
+      <td><%=t(:show_title)%></td>
+      <td><%=t(:show_quantity)%></td>
+      <td><%=t(:show_price_for_piece)%></td>
+      <td><%=t(:show_total_price)%></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @cart_items.each do |cart_item|%>
+    <tr>
+      <td><%= image_tag cart_item.shop_item.shop_image.url(:medium)%></td>
+      <td><%= cart_item.shop_item.title1 %></td>
+      <% if !@confirmation.present? %>
+      <td>
+        <div class="row">
+          <%= form_for([cart_item.shopping_cart, cart_item], html: { multipart: true }) do |f| %>
+            <% if cart_item.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(cart_item.errors.count, "error") %> prohibited this cart_item from being saved:</h2>
+                <ul>
+                <% cart_item.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="input-field col s3">
+              <%= f.label t(:show_quantity) %>
+              <%= f.number_field :quantity %>
+            </div>
+            <br>
+            <div class="waves-effect waves-light btn">
+              <%= f.submit t(:show_update)%>
+            </div>
+        </div>
+      </td>
+          <% end %>
+        <% else %>
+      <td><%= cart_item.quantity %></td>  
+      <% end %>
+      <td><%= cart_item.shop_price %></td>
+      <td><%= cart_item.shop_price*cart_item.quantity %></td>
+      <td>
+        <p><%= link_to t(:show_show_item), cart_item.shop_item %></p>
+        <p><%= link_to t(:destroy), cart_item, method: :delete, data: { confirm: 'Are you sure?' } if !@confirmation.present?%></p>
+      </td>
+    </tr>
+  <% end %> 
+  </tbody>
+</table>
+</div>
+<div class="center">
+<%= will_paginate @cart_items %>
+</div>
+<h5 class="center"><%=t(:show_items)%>: <%= @cart_items.count %>. <%=t(:show_total_price)%>: <%= @cart_items_price %></h5>
+</div>
+<% end %>
+<br>
+<% unless @confirmation.present? %>
+<div class="container">
+  <div class="waves-effect waves-light btn center"><%= button_to t(:show_destroy_shopping_cart), @shopping_cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
+<% end %>
+<br>
+
+
+<% if @cart_items.any? and !@current_contact.present?%>
+
+
+<div class="container">
+<h5><%=t(:show_delivery_information)%></h5>
+<%= form_for([@shopping_contact.shopping_cart, @shopping_contact], html: {multipart: true}, class: "col s12 m6") do |f| %>
+  <% if @shopping_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shopping_contact.errors.count, "error") %> prohibited this shopping_contact from being saved:</h2>
+
+      <ul>
+      <% @shopping_contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s6">
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :address %>
+    <%= f.text_field :adress %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :zip_code %>
+    <%= f.number_field :zip_code %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
+  </div>
+
+  <div class="waves-effect waves-light btn">
+    <%= f.submit "OK"%>
+  </div>
+<% end %>
+</div>
+
+<% end %>
+
+
+
+<% if @current_contact.present? %> 
+<div class="container">
+  <div class="col s12 m6 offset-m3 ">
+    <div class="card">
+      <div class="row">
+        <div class="col m6 ">
+          <p><%=t(:show_state)%>: <%= @current_contact.state %></p>
+          <p><%=t(:show_address)%>: <%= @current_contact.adress %></p>
+          <p><%=t(:show_zip_code)%>: <%= @current_contact.zip_code %></p>
+        </div>
+        <div class="col m6 ">  
+          <p><%=t(:show_email)%>: <%= @current_contact.email %></p>
+          <p><%=t(:show_phone)%>: <%= @current_contact.phone %></p>
+          <p><%=t(:show_full_name)%>: <%= @current_contact.full_name %></p>
+        </div>
+      </div>
+    <%unless @confirmation.present?%>  
+      <div class="card-content">
+      <%= link_to t(:edit), edit_shopping_contact_path(@current_contact) %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%if @current_contact.present? and !@confirmation.present?%>
+  <div class="container center">
+  <%= form_for([@cart_confirm.shopping_cart, @cart_confirm], html: {multipart: true}, class: "col s12 m6") do |f| %>
+    <% if @cart_confirm.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@cart_confirm.errors.count, "error") %> prohibited this cart_confirm from being saved:</h2>
+
+        <ul>
+        <% @cart_confirm.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="input-field col s6">
+      <%= f.hidden_field :shopping_cart_id, value: @shopping_cart.id %>
+    </div>
+    <div class="waves-effect waves-light btn">
+      <%= f.submit t(".confirm")%>
+    </div>
+  <% end %>
+  </div>
+<% else%>
+  <% unless !@current_contact.present?%>
+  <div class="container"><h3 class="center"><%=t(:show_confirm_line)%></h3></div>
+  <% end %>
+<% end %>
+
+

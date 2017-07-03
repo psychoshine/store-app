@@ -1,0 +1,45 @@
+<%= form_for(shopping_contact) do |f| %>
+  <% if shopping_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shopping_contact.errors.count, "error") %> prohibited this shopping_contact from being saved:</h2>
+
+      <ul>
+      <% shopping_contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.hidden_field :shopping_cart_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip_code %>
+    <%= f.number_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :adress %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

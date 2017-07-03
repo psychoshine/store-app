@@ -1,0 +1,79 @@
+<div class="container">
+<% if current_user.present? and current_user.admin? %>
+<%= form_for(contact, class: "col s12") do |f| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <div class="input-field col s6">
+    <%= f.label (:fb) %>
+    <%= f.text_field :fb, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label (:insta) %>
+    <%= f.text_field :insta, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label (:twitter) %>
+    <%= f.text_field :twitter, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label (:vk) %>
+    <%= f.text_field :vk, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label (:email) %>
+    <%= f.text_field :email, class: "validate" %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label t(:phone) %>
+    <%= f.text_field :phone, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label t(:phone2) %>
+    <%= f.text_field :phone2, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label t(:phone3) %>
+    <%= f.text_field :phone3, class: "validate" %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label t(:description) %>
+    <%= f.text_area :description, id: "textarea1", class: "materialize-textarea" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label t(:description2) %>
+    <%= f.text_area :description2, id: "textarea1", class: "materialize-textarea" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label t(:address) %>
+    <%= f.text_field :adress, class: "validate" %>
+  </div>
+  <div class="input-field col s6">
+    <%= f.label t(:address2) %>
+    <%= f.text_field :adress2, class: "validate" %>
+  </div>
+   <div class="input-field col s6">
+    <%= f.label t(:how_to_get) %>
+    <%= f.text_area :how_to_get, id: "textarea1", class: "materialize-textarea" %>
+  </div>
+   <div class="input-field col s6">
+    <%= f.label t(:how_to_get2) %>
+    <%= f.text_area :how_to_get2, id: "textarea1", class: "materialize-textarea" %>
+  </div>
+  <div class="waves-effect waves-light btn">
+    <%= f.submit "OK" %>
+  </div>  
+  
+<% end %>
+<% end %>
+</div>

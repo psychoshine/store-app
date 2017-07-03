@@ -1,0 +1,40 @@
+<% provide(:title, "Shopping contacts") %>
+<p id="notice"><%= notice %></p>
+
+<h1>Shopping Contacts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shopping cart</th>
+      <th>User</th>
+      <th>State</th>
+      <th>Zip code</th>
+      <th>Adress</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shopping_contacts.each do |shopping_contact| %>
+      <tr>
+        <td><%= shopping_contact.shopping_cart_id %></td>
+        <td><%= shopping_contact.user_id %></td>
+        <td><%= shopping_contact.state %></td>
+        <td><%= shopping_contact.zip_code %></td>
+        <td><%= shopping_contact.adress %></td>
+        <td><%= shopping_contact.email %></td>
+        <td><%= shopping_contact.phone %></td>
+        <td><%= link_to 'Show', shopping_contact %></td>
+        <td><%= link_to 'Edit', edit_shopping_contact_path(shopping_contact) %></td>
+        <td><%= link_to 'Destroy', shopping_contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shopping Contact', new_shopping_contact_path %>

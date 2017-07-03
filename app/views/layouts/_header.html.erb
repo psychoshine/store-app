@@ -1,0 +1,132 @@
+<style>
+  .navbar-fixed ul li a {
+  padding: 1.54em
+}
+nav ul li:hover {
+   background-color: #fafafa !important;
+}
+
+nav a:hover {
+  background-color: #fafafa !important;
+}
+nav a{
+  color: #757575 !important;
+}
+
+
+
+.dropdown-content {
+  min-width: 0;
+  min-height: 0;
+  overflow: visible !important;
+}
+
+</style>
+<header>
+    <div class="navbar-fixed">
+      <nav style="background: rgba(255,255,255,0.5);">
+        <div class="nav-wrapper"> 
+          <a href="#!" class="brand-logo" style="background-color: transparent !important;"></a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse" style="background-color: transparent !important;"><i class="material-icons">menu</i></a>
+
+          <ul class="right hide-on-med-and-down">
+            <li class="<%= 'active' if current_page?(root_path)%>"><%= link_to t(:main), root_url%></li>
+            <li class="<%= 'active' if current_page?(new_shop_item_path) or (@shop_item.present? and current_page?(shop_item_path(@shop_item))) or (@shop_item.present? and current_page?(edit_shop_item_path(@shop_item))) or current_page?(shop_items_path)%>"><%= link_to t(:store), shop_items_path%></li>
+            <% if @shopping_cart.id.present? %>
+              <li class="<%= 'active' if current_page?(new_shopping_cart_path) or (@shopping_cart.present? and current_page?(shopping_cart_path(@shopping_cart))) or current_page?(shopping_carts_path)%>"><%= link_to t(:cart), shopping_cart_path(@shopping_cart)%></li>
+            <% end %>
+            <li class="<%= 'active' if current_page?(contacts_path)%>"><%= link_to t(:contacts), contacts_path%></li>
+
+
+            <%if current_page?(locale: :ua) == false %>
+              <li><%= link_to "UA", locale: :ua %></li>
+            <% end %>
+
+
+            <%if current_page?(locale: :ru) == false %>
+              <li><%= link_to "RU", locale: :ru %></li>
+            <% end %>
+            <% if current_user.present? and current_user.admin? %>
+            <li>
+              <a class="dropdown-button" href="#!" data-activates="account-dropdown">Administrator</a>
+              <ul id="account-dropdown" class="dropdown-content">
+                  <li class="<%= 'active' if current_page?(contact_us_path)%>"><%= link_to t(:contact_us), contact_us_path%></li>
+                  
+                <% if logged_in? %>
+                <li class="<%= 'active' if current_page?(shopping_carts_path)%>"><%= link_to t(:shopping_carts), shopping_carts_path%></li>
+                  <li class="<%= 'active' if (current_user.present? and current_page?(edit_user_path(current_user)))%>"><%= link_to t(:settings), edit_user_path(current_user)%></li>
+                  <li><%= link_to t(:logout), logout_path, method: "delete"%></li>
+                <% end %>
+              </ul>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+      </nav>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+      <li class="<%= 'active' if current_page?(root_path)%>"><%= link_to t(:main), root_path%></li>
+
+
+
+      <li lass="<%= 'active' if current_page?(contacts_path)%>"><%= link_to t(:contacts), contacts_path%></li>
+
+      <%= content_tag :li do %>
+      <%= link_to "UA", locale: :ua%>
+      <%end unless current_page?(locale: :ua)%>
+
+      <%= content_tag :li do %>
+      <%= link_to "RU", locale: :ru%>
+      <%end unless current_page?(locale: :ru)%>
+      <% if current_user.present? and current_user.admin? %>
+
+        <li class="<%= 'active' if current_page?(contact_us_path)%>"><%= link_to t(:contact_us), contact_us_path%></li>
+      <% end %>
+      <% if logged_in? %>
+      <li class="<%= 'active' if current_page?(shopping_carts_path)%>"><%= link_to t(:shopping_carts), shopping_carts_path%></li>
+      <li class="<%= 'active' if (current_user.present? and current_page?(edit_user_path(current_user)))%>"><%= link_to t(:settings), edit_user_path(current_user)%></li>
+      <li><%= link_to t(:logout), logout_path, method: "delete"%></li>
+      <% end %>
+    </ul>
+</header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script>
+// Check for jQuery.
+// TODO: Fix $(dom).velocity is not function bug
+if (typeof(jQuery) === 'undefined') {
+  // var jQuery;
+  // Check if require is a defined function.
+  if (typeof(require) === 'function') {
+    window.jQuery = window.$ = require('jquery');
+  // Else use the dollar sign alias.
+  } else {
+    window.jQuery = $;
+  }
+};
+  
+</script>
+
+<script>
+(function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    $('.parallax').parallax();
+    $('.slider').slider({full_width: true});
+    $('.modal').modal();
+    $('.dropdown-button').dropdown({
+      hover: true,
+      gutter: 0, 
+      }
+    );    
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      firstDay: 1,
+      closeText: 'OK', closeStatus: '',
+    });
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+</script>
+  

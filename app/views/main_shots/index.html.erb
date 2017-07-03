@@ -1,0 +1,127 @@
+<style>
+  .parallax-container {
+    height: 640px;
+  }
+</style>
+<p id="notice"><%= notice %></p>
+
+
+<% if current_page?(locale: :ua) %>
+<% @main_shots.each do |ms| %>
+<%if ms.photo.present?%>
+  <div class="parallax-container">
+    <div class="parallax">
+    <%= image_tag ms.photo.url(:main) %>        
+    </div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header"><%= ms.title %></h2>
+      <p class="grey-text text-darken-3 lighten-3"><%= simple_format(ms.description)%></p>
+      <% if current_user.present? and current_user.admin? %>
+      <h5><%= link_to t(:destroy), ms, class: "waves-effect waves-light btn red", method: :delete, data: { confirm: 'Are you sure?' }  %></h5>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%end%>
+<%end%>
+
+
+<% if current_page?(locale: :ru) %>
+<% @main_shots.each do |ms| %>
+<%if ms.photo.present?%>
+  <div class="parallax-container">
+    <div class="parallax">
+    <%= image_tag ms.photo.url(:main) %>        
+    </div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header"><%= ms.title2 %></h2>
+      <p class="grey-text text-darken-3 lighten-3"><%= simple_format(ms.description2)%></p>
+      <% if current_user.present? and current_user.admin? %>
+      <h5><%= link_to t(:destroy), ms, class: "waves-effect waves-light btn red", method: :delete, data: { confirm: 'Are you sure?' }  %></h5>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%end%>
+<%end%>
+
+<% if current_page?(locale: :ua) %>
+<% if current_user.present? and current_user.admin? %>
+  <div class="container center">
+    <%= link_to t('.add'), new_main_shot_path, class: "waves-effect waves-light btn midle" %>
+  </div>
+  </br>
+  <div class="container">    
+      <% @main_shots.each do |ms| %>
+        <div class="row">
+          <div class="col s12 m6 offset-m3 ">
+            <div class="card hoverable">
+              <div class="card-image">
+                <%= image_tag ms.photo.url(:large) %>
+              
+                <span class="card-title truncate"><td><%= ms.title %></td></span>
+                           
+              </div>
+              <div class="card-content">
+                <p><%= simple_format(ms.description)%></p>
+              </div>
+              <div class="card-action">
+                <%= link_to t(:details), main_shot_path(ms) %>
+                <%= link_to t(:edit), edit_main_shot_path(ms) %>
+                <%= link_to t(:destroy), ms, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+  <br>
+
+  <div class="container center">
+  <%= link_to t('.add'), new_main_shot_path, class: "waves-effect waves-light btn midle" %>
+  </div>
+<% end %>
+<% end %>
+
+<% if current_page?(locale: :ru) %>
+<% if current_user.present? and current_user.admin? %>
+  <div class="container center">
+    <%= link_to t('.add'), new_main_shot_path, class: "waves-effect waves-light btn midle" %>
+  </div>
+  </br>
+  <div class="container">    
+      <% @main_shots.each do |ms| %>
+        <div class="row">
+          <div class="col s12 m6 offset-m3 ">
+            <div class="card hoverable">
+              <div class="card-image">
+                <%= image_tag ms.photo.url(:large) %>
+              
+                <span class="card-title truncate"><td><%= ms.title2 %></td></span>
+                           
+              </div>
+              <div class="card-content">
+                <p><%= simple_format(ms.description2)%></p>
+              </div>
+              <div class="card-action">
+                <%= link_to t(:details), main_shot_path(ms) %>
+                <%= link_to t(:edit), edit_main_shot_path(ms) %>
+                <%= link_to t(:destroy), ms, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+  <br>
+
+  <div class="container center">
+  <%= link_to t('.add'), new_main_shot_path, class: "waves-effect waves-light btn midle" %>
+  </div>
+<% end %>
+<% end %>
+

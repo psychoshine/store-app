@@ -1,0 +1,24 @@
+<div class="container">
+
+<% provide(:title, "Log in") %>
+<h2 class="center"><%= t(:log_in)%></h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label t(:login_email) %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label t(:login_password) %>
+      <%= link_to "#{t(:forgot_password)}", new_password_reset_path %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+
+      <%= f.submit t(:log_in), class: "btn btn-primary" %>
+    <% end %>
+
+    <p><%= t(:is_new_user)%> <%= link_to t(:sign_up_now), signup_path %></p>
+  </div>
+</div>
+</div>

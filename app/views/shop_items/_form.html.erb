@@ -1,0 +1,58 @@
+<% if current_user.present? and current_user.admin? %>
+<div class="container">
+<%= form_for(shop_item, html: { multipart: true }, class: "col s12 m6") do |f| %>
+  <% if shop_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shop_item.errors.count, "error") %> prohibited this shop_item from being saved:</h2>
+
+      <ul>
+      <% shop_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="input-field col s6">
+    <%= f.label :title1 %>
+    <%= f.text_field :title1 %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :title2 %>
+    <%= f.text_field :title2 %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :description1 %>
+    <%= f.text_area :description1, id: "textarea1", class: "materialize-textarea" %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :description2 %>
+    <%= f.text_area :description2, id: "textarea1", class: "materialize-textarea" %>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+
+  <div class="file-field input-field">
+    <div class="btn">
+      <span><%= t(:photo) %></span>
+      <%= f.file_field :shop_image %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+  </div>
+
+  <div class="waves-effect waves-light btn">
+    <%= f.submit "OK" %>
+  </div>
+<% end %>
+</div>
+<% end %>

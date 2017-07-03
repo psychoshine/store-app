@@ -1,0 +1,16 @@
+<% if current_user.present? and current_user.admin? %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contact_u.email %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @contact_u.message %>
+</p>
+
+<%= link_to 'Edit', edit_contact_u_path(@contact_u) %> |
+<%= link_to 'Back', contact_us_path %>
+<% end %>
